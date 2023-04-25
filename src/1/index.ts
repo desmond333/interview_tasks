@@ -1,1 +1,1 @@
-export { Task1 } from  './1_task.tsx'
+export { Task1 } from './Task1.tsx'
