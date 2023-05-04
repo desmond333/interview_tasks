@@ -12,25 +12,16 @@
 // - black
 
 const Button = () => {
-    return <button>Button</button>
+  return <button>Button</button>
 }
 
-export const Task1 = () => {
-    return (
-        <main>
-            <Button variant='one' color='yellow' />
-        </main>
-    )
+export const PropsConflict = () => {
+  return (
+    <main>
+      <Button variant="one" color="yellow" />
+    </main>
+  )
 }
-
-
-
-
-
-
-
-
-
 
 // Условия задачи:
 // сделать так, чтобы в button можно было передавать colors связанные только с одним вариантом и ts ругался

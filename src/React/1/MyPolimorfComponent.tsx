@@ -2,38 +2,24 @@
 // сделать так, чтобы MyPolimorfComponent
 // в зависимости от переданных пропсов был link or btn or div
 const MyPolimorfComponent = () => {
-    return (
-        <>MyPolimorfComponent</>
-    )
+  return <>MyPolimorfComponent</>
 }
 
-export const Task2 = () => {
-    return (
-        <section>
-            <MyPolimorfComponent tag='a' href='https://www.google.com/'>
-                I am link
-            </MyPolimorfComponent>
+export const MyPolimorfComponent = () => {
+  return (
+    <section>
+      <MyPolimorfComponent tag="a" href="https://www.google.com/">
+        I am link
+      </MyPolimorfComponent>
 
-            <MyPolimorfComponent tag='button' type="submit">
-                I am submit button
-            </MyPolimorfComponent>
+      <MyPolimorfComponent tag="button" type="submit">
+        I am submit button
+      </MyPolimorfComponent>
 
-            <MyPolimorfComponent>
-                I am Div
-            </MyPolimorfComponent>
-        </section>
-    )
+      <MyPolimorfComponent>I am Div</MyPolimorfComponent>
+    </section>
+  )
 }
-
-
-
-
-
-
-
-
-
-
 
 // Условия задачи:
 // сделать так, чтобы MyPolimorfComponent
@@ -56,7 +42,7 @@ export const Task2 = () => {
 //     )
 // }
 //
-// export const Task2 = () => {
+// export const MyPolimorfComponent = () => {
 //     return (
 //         <section>
 //             <MyPolimorfComponent tag='a' href='https://www.google.com/'>
@@ -73,11 +59,3 @@ export const Task2 = () => {
 //         </section>
 //     )
 // }
-
-
-
-
-
-
-
-
