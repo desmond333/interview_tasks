@@ -4,6 +4,7 @@ import viteLogo from "/vite.svg"
 import "./App.css"
 import { SnakesComponent } from "./JavaScript/Snake/index.tsx"
 import { FibonacciComponent } from "./JavaScript/Fibonacci/index.tsx"
+import { FindSumComponent } from "./JavaScript/findSum"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,8 +32,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <SnakesComponent />
-      {/* <FibonacciComponent /> */}
+      {/*<SnakesComponent />*/}
+      <FindSumComponent />
     </>
   )
 }

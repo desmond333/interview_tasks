@@ -13,33 +13,68 @@ import { FC } from "react"
 // 1 параметр - стартовое значение 2 параметр сколько в столбце и строке элементов
 
 export const SnakesComponent: FC = () => {
-  const getSnakes = (startPosition: number = 1, rowColumns: number = 3) => {
-    const obj: any = {}
-    
-    for (let i = 0; i < rowColumns; i++) {
-        const tempArray = [];
-
-        const b = Object.keys(obj).length  === 0 ? 0 : obj[i-1][rowColumns-1]
-        for (let j = b; j < 9; j++) {
-            tempArray.push(startPosition + j);
-            console.log(j)
-        }
-
-        
-        obj[i] = tempArray;
-        debugger
-        console.log(tempArray)
+  function generateSnake(startValue: number, size: number) {
+    const matrix = []
+    for (let i = 0; i < size; i++) {
+      matrix.push([])
+      for (let j = 0; j < size; j++) {
+        matrix[i].push(0)
+      }
     }
+
+    let value = startValue
+    let direction = 0 // 0 - вправо, 1 - вниз, 2 - влево, 3 - вверх
+    let row = 0
+    let col = 0
+
+    for (let i = 0; i < size * size; i++) {
+      matrix[row][col] = value
+      value++
+
+      // Проверяем следующую позицию в зависимости от текущего направления
+      switch (direction) {
+        case 0: // вправо
+          if (col + 1 >= size || matrix[row][col + 1] !== 0) {
+            direction = 1 // меняем направление на вниз
+            row++
+          } else {
+            col++
+          }
+          break
+        case 1: // вниз
+          if (row + 1 >= size || matrix[row + 1][col] !== 0) {
+            direction = 2 // меняем направление на влево
+            col--
+          } else {
+            row++
+          }
+          break
+        case 2: // влево
+          if (col - 1 < 0 || matrix[row][col - 1] !== 0) {
+            direction = 3 // меняем направление на вверх
+            row--
+          } else {
+            col--
+          }
+          break
+        case 3: // вверх
+          if (row - 1 < 0 || matrix[row - 1][col] !== 0) {
+            direction = 0 // меняем направление на вправо
+            col++
+          } else {
+            row--
+          }
+          break
+      }
+    }
+
+    return matrix
   }
 
+  const snakeMatrix = generateSnake(1, 4)
+  for (let i = 0; i < snakeMatrix.length; i++) {
+    console.log(snakeMatrix[i])
+  }
 
-  console.log("getSnakes()")
-  console.log(getSnakes())
-
-
-  return (
-    <div>
-      getSnakes()
-    </div>
-  )
+  return <div>getSnakes()</div>
 }
