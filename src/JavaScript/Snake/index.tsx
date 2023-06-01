@@ -71,10 +71,62 @@ export const SnakesComponent: FC = () => {
     return matrix
   }
 
-  const snakeMatrix = generateSnake(1, 4)
-  for (let i = 0; i < snakeMatrix.length; i++) {
-    console.log(snakeMatrix[i])
+  function createSnakeMatrix(start: number, size: number): number[][] {
+    const matrix: number[][] = []
+
+    // Заполняем матрицу пустыми значениями
+    for (let i = 0; i < size; i++) {
+      matrix[i] = []
+    }
+
+    let counter = start // Инициализируем счетчик значением start
+    let rowStart = 0 // Начальная позиция для строк
+    let rowEnd = size - 1 // Конечная позиция для строк
+    let colStart = 0 // Начальная позиция для столбцов
+    let colEnd = size - 1 // Конечная позиция для столбцов
+
+    // Функция для заполнения матрицы значениями
+    const fillMatrix = (): void => {
+      // Заполняем верхнюю горизонтальную строку
+      for (let i = colStart; i <= colEnd; i++) {
+        matrix[rowStart][i] = counter++ // Увеличиваем счетчик и присваиваем значение ячейке
+      }
+      rowStart++
+
+      // Заполняем правый вертикальный столбец
+      for (let i = rowStart; i <= rowEnd; i++) {
+        matrix[i][colEnd] = counter++ // Увеличиваем счетчик и присваиваем значение ячейке
+      }
+      colEnd--
+
+      // Заполняем нижнюю горизонтальную строку в обратном порядке
+      for (let i = colEnd; i >= colStart; i--) {
+        matrix[rowEnd][i] = counter++ // Увеличиваем счетчик и присваиваем значение ячейке
+      }
+      rowEnd--
+
+      // Заполняем левый вертикальный столбец в обратном порядке
+      for (let i = rowEnd; i >= rowStart; i--) {
+        matrix[i][colStart] = counter++ // Увеличиваем счетчик и присваиваем значение ячейке
+      }
+      colStart++
+
+      // Проверяем, остались ли еще ячейки для заполнения
+      if (rowStart <= rowEnd && colStart <= colEnd) {
+        fillMatrix() // Рекурсивно запускаем функцию для оставшейся части матрицы
+      }
+    }
+    fillMatrix()
+
+    return matrix
   }
+
+  const snakeMatrix = createSnakeMatrix(1, 4)
+  console.log(snakeMatrix)
+
+  // for (let i = 0; i < snakeMatrix.length; i++) {
+  //   console.log(snakeMatrix[i])
+  // }
 
   return <div>getSnakes()</div>
 }
